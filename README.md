@@ -1,2 +1,2 @@
 # webapp-project
-VVG ORS - Web aplikacije projekt
+VVG ORS V. semestar (IZVANREDNI STUDIJ) - Web aplikacije projekt
