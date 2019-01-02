@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<Players>
+	<Player>
+		<user_name>JoB</user_name>
+		<first_name>Jo</first_name>
+		<last_name>Black</last_name>
+		<birth_date>1991-03-04</birth_date>
+		<birth_place>Zagreb</birth_place>
+	</Player>
+	<Player>
+		<user_name>petlja</user_name>
+		<first_name>Gordan</first_name>
+		<last_name>Zvani</last_name>
+		<birth_date>1965-03-04</birth_date>
+		<birth_place>Trgovisce</birth_place>
+	</Player>
+</Players>
