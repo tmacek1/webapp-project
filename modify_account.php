@@ -30,7 +30,7 @@ if (ISSET($_POST['change'])){
 
 <script>
 
-function myFunction() {
+function showPassword() {
   var x = document.getElementById("login-npwd");
   var y = document.getElementById("login-cpwd");
   var z = document.getElementById("temp-pwd");
@@ -84,7 +84,7 @@ function myFunction() {
 
 
                     <div >
-                        <input type="checkbox" onclick="myFunction()">Show password
+                        <input type="checkbox" onclick="showPassword()">Show password
                     </div>
 
                      <div
