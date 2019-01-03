@@ -19,13 +19,18 @@ if (ISSET($_POST['register-user'])){
     $password = md5($_POST['password']);
     $confirmpassword = md5($_POST['confirmpassword']);
 
-    //check if username exists
-    $check = "SELECT username FROM admins WHERE username = '$username'";
-    $result = $db->query($check);
+    //check if username/email exists
+    $checkUser = "SELECT username FROM admins WHERE username = '$username'";
+    $checkEmail = "SELECT email FROM admins where email = '$email'";
+    $result = $db->query($checkUser);
+    $result2 = $db->query($checkEmail);
 
     if($result->num_rows >= 1) {
-        echo "<script language=\"javascript\">alert(\"Username already exists, please use different one.\");document.location.href='register.php';</script>";
-
+        echo "<script language=\"javascript\">alert(\"Username already exists, please use different one.\");document.location.href='register.php';</script>"; 
+    }
+   
+    if($result2->num_rows >=1) {
+        echo "<script language=\"javascript\">alert(\"Email address already exists, please use different one.\");document.location.href='register.php';</script>";	    
     } else {
 
         //check if passwords match
