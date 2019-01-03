@@ -11,7 +11,7 @@ if (ISSET($_POST['login'])){
 
     $username = $_POST['username'];
     $password = md5($_POST['password']);
-    $check = "SELECT * FROM admins WHERE username='$username' AND password='$password'";
+    $check = "SELECT * FROM admins WHERE username='$username' AND password='$password' and status = 1";
     $val=$db->query($check);
 
     if($val->num_rows == 1){
@@ -56,7 +56,7 @@ function myFunction() {
     <div id="loginbox" style="margin-top: 50px;" class="col-lg-6 offset-md-3 col-md-8 offset-sm-2">
         <div class="card card-inverse card-info">
             <div class="card-header">
-                <div class="card-title"<><h1>Player DB login page</h1></div>
+                <div class="card-title"<><h1>Webapp login page</h1></div>
                 <div style="float: right; font-size: 80%; position: relative; top: -10px;"><a href="recover.php">Forgot password?</a>
                 </div>
             </div>

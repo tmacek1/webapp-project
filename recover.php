@@ -91,7 +91,7 @@ if (ISSET($_POST['recover'])){
     <div id="loginbox" style="margin-top: 50px;" class="mainbox col-lg-8 offset-md-3 col-md-8 offset-sm-2">
         <div class="card card-inverse card-info">
             <div class="card-header">
-                <div class="card-title"<><h1>Player DB account recovery page</h1></div>
+                <div class="card-title"<><h1>Webapp account recovery page</h1></div>
                 </div>
             </div>
             <div style="padding-top: 30px;" class="card-block">

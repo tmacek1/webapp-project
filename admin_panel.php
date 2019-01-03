@@ -5,14 +5,7 @@ error_reporting(E_ALL);
 include 'auth_check.php';
 include 'db.php';
 
-//$page = (isset($_GET['page']) ? $_GET['page'] : 1);
-//$perPage = (isset($_GET['per-page']) && ($_GET['per-page']) <= 50 ? $_GET['per-page'] : 7);
-//$start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
-
 $sql = "select * from admins limit 10";
-//$total = $db->query("select * from admins")->num_rows;
-//$pages = ceil($total / $perPage);
-
 $rows = $db->query($sql);
 
 ?>
@@ -35,14 +28,14 @@ $rows = $db->query($sql);
             <h1 class="text-success">User database</h1>
          </div>
 
-
       <table class="table text-center">
         <thead>
           <tr>
             <th>UserID</th>
             <th>Username</th>
             <th>Email</th>
-            <th>Role</th>
+	    <th>Role</th>
+            <th>Active</th>		
           </tr>
          </thead>
          <tbody>
@@ -52,12 +45,18 @@ $rows = $db->query($sql);
                <td class="col-md-0"><?php echo $row['username']?>
                <td class="col-md-0"><?php echo $row['email']?>
                <td class="col-md-0"><?php echo $row['role']?>
+	       <td class="col-md-0"><?php echo $row['status']?>	
+    <?php
 
-              <?php
                if ($_SESSION['role'] == 'admin') {
-	      	echo'<td><a href="change_role.php?id=.$row["id"]." class="btn btn-danger">Change role</a></td>';}
-              ?>
-	  
+		       echo '<td><a href="change_role_admin.php?id='.$row["id"].'" class="btn btn-success">Admin</a></td>
+			     <td><a href="change_role_readonly.php?id='.$row["id"].'" class="btn btn-secondary">Read-only</a></td>
+			     <td><a href="deactivate.php?id='.$row["id"].'" class="btn btn-danger">Deactivate account</a></td>
+                             <td><a href="reactivate.php?id='.$row["id"].'" class="btn btn-primary">Reactivate account</a></td>';
+					               }
+
+               ?>
+
                </tr>
             <?php endwhile; ?>
          </tbody>

@@ -1,10 +1,20 @@
 <?php
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
 
 include 'auth_check.php';
 include 'xml_functions.php';
 include 'db.php';
 
+//$page = (isset($_GET['page']) ? $_GET['page'] : 1);
+//$perPage = (isset($_GET['per-page']) && ($_GET['per-page']) <= 50 ? $_GET['per-page'] : 7);
+//$start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
+
+//$sql = "select * from users where activated = 1 limit ".$start." , ".$perPage." ";
 $sql = "select * from users where activated = 1";
+//$total = $db->query("select * from users where activated = 1")->num_rows;
+//$pages = ceil($total / $perPage);
+
 $rows = $db->query($sql);
 
 ?>
@@ -110,28 +120,16 @@ $rows = $db->query($sql);
 
 	      <div class="col-12 col-sm-6 col-md-6">
                <form method="post" action="players.php" enctype="multipart/form-data">
-
-                <input type="file" name="chooseFile" id="chooseFile">
-
-	        <label class="btn btn-success"><input id="submit" type="submit" style="display:none;">Submit XML</label>
+		 <label class="btn btn-success" for="chooseFile"><input id="chooseFile" name="chooseFile" type="file"style="display:none;">Import XML</label>
+		 <label class="btn btn-danger"><input id="submit" type="submit" style="display:none;">Submit XML</label>
               </form>
 	     </div>
 <?php
 if ((strtolower($_SERVER['REQUEST_METHOD'])=='post') && (!empty($_FILES['chooseFile']['tmp_name']))){
 
-    $file = $_FILES['chooseFile']['tmp_name'];
-    $schema = '/home/mica/html/xml_schema.xsd';
-    $ab = new DOMDocument;
-
-    libxml_use_internal_errors(true);
-    $ab->load($file);
-
-    if ($ab->schemaValidate($schema)) {
-	    print "Imported XML is valid.\n";
-    } else {
-	print "Imported XML is invalid.\n";
-	return;
-    }
+    $test = file_get_contents($_FILES['chooseFile']['tmp_name']); 
+    $testread = readfile($test);
+    print_r($testread);
 
     $catArray = xml2array($_FILES['chooseFile']['tmp_name']);
 
@@ -150,7 +148,6 @@ if ((strtolower($_SERVER['REQUEST_METHOD'])=='post') && (!empty($_FILES['chooseF
 
 	if ($dupval->num_rows>0) {
 		echo "<script type='text/javascript'>alert('User already exists, please try again');document.location.href='players.php';</script>";
-		return;
         }
         else{
           $sql = "insert into users (user_name, first_name, last_name, birth_place, birth_date) values ('$user_name','$first_name','$last_name','$birth_place', '$birth_date')";

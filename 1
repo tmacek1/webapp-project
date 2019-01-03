@@ -122,12 +122,11 @@ if ((strtolower($_SERVER['REQUEST_METHOD'])=='post') && (!empty($_FILES['chooseF
     $file = $_FILES['chooseFile']['tmp_name'];
     $schema = '/home/mica/html/xml_schema.xsd';
     $ab = new DOMDocument;
-
     libxml_use_internal_errors(true);
     $ab->load($file);
 
     if ($ab->schemaValidate($schema)) {
-	    print "Imported XML is valid.\n";
+ 	print "Imported XML is valid.\n";
     } else {
 	print "Imported XML is invalid.\n";
 	return;
@@ -150,7 +149,6 @@ if ((strtolower($_SERVER['REQUEST_METHOD'])=='post') && (!empty($_FILES['chooseF
 
 	if ($dupval->num_rows>0) {
 		echo "<script type='text/javascript'>alert('User already exists, please try again');document.location.href='players.php';</script>";
-		return;
         }
         else{
           $sql = "insert into users (user_name, first_name, last_name, birth_place, birth_date) values ('$user_name','$first_name','$last_name','$birth_place', '$birth_date')";

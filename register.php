@@ -1,4 +1,6 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+
 include 'db.php';
 
 if (ISSET($_POST['register-user'])){
@@ -34,16 +36,43 @@ if (ISSET($_POST['register-user'])){
 
             //check insert query
             if($execute) {
-                echo "<script language=\"javascript\">alert(\"Registration successful\");document.location.href='login.php';</script>";
-            }else{
+    
+             	require 'PHPMailer-master/src/Exception.php';
+             	require 'PHPMailer-master/src/PHPMailer.php';
+             	require 'PHPMailer-master/src/SMTP.php';
+
+             	$mail = new PHPMailer(TRUE);
+
+	    	try {
+
+	        	$mail->setFrom('vipit0404@gmail.com', 'webapp mailer');
+                	$mail->addAddress($email);
+	        	$mail->Subject = 'Webapp project - welcome mail';
+			$mail->Body = "Dear $username, thank You for joining this project. Feel free to login at any time on URL -> https://tomislavm.ddns.net";		        
+                	$mail->isSMTP();
+			$mail->Host = 'in-v3.mailjet.com';
+                	$mail->SMTPAuth = TRUE;
+			$mail->Username = '921135ba749b4d1c343bb17022a7bab2';
+			$mail->Password = '7a78d773c88bec00e032772a687d5bac';
+			$mail->Port = 25;
+
+			$mail->send();
+
+            	}catch (Exception $e) {
+                    echo $e->errorMessage();
+            	}catch (Exception $e) {
+                    echo $e->getMessage();
+            	}
+
+	        echo "<script language=\"javascript\">alert(\"Registration successful\");document.location.href='login.php';</script>";
+	  }else{
                 echo "<script language=\"javascript\">alert(\"Something went wrong, please contact page administrator\");document.location.href='login.php';</script>";
             }
         }else {
             echo "<script language=\"javascript\">alert(\"Passwords dont match.\");document.location.href='register.php';</script>";
         }
-
-        }
-    }
+   }
+  }
 ?>
 
 
@@ -72,7 +101,6 @@ function myFunction() {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-    <title>webapp project registration</title>
 
 </head>
 
@@ -83,7 +111,7 @@ function myFunction() {
             <div class="card card-inverse card-info">
                 <div class="card-header">
                     <div class="card-title" <>
-                        <h1>Player DB registration page</h1>
+                        <h1>Webapp registration page</h1>
                     </div>
                 </div>
             </div>
