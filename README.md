@@ -1,5 +1,5 @@
 # webapp-project
-VVG ORS 3. godina izvanredni studij\
+*VVG ORS 3. godina izvanredni studij*\
 Web aplikacije projekt\
 Webapp dostupna na -> https://tomislavm.ddns.net/
 
