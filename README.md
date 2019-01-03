@@ -1,6 +1,6 @@
 # webapp-project
 VVG ORS - Web aplikacije projekt\
-Webapp je podignuta iza besplatne domene na URLu -> https://tomislavm.ddns.net/
+Webapp dostupna na -> https://tomislavm.ddns.net/
 
 # valid xml example
 
