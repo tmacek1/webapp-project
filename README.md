@@ -1,5 +1,6 @@
 # webapp-project
-VVG ORS - Web aplikacije projekt\
+VVG ORS 3. godina izvanredni studij/ 
+Web aplikacije projekt\
 Webapp dostupna na -> https://tomislavm.ddns.net/
 
 # valid xml example
