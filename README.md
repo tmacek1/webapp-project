@@ -3,7 +3,7 @@ VVG ORS - Web aplikacije projekt
 
 # valid xml example
 
-<?xml version="1.0"?>
+```<?xml version="1.0"?>
 <Players>
          <Player>
                 <user_name>testUser1</user_name>
@@ -20,3 +20,4 @@ VVG ORS - Web aplikacije projekt
                 <birth_place>Zagreb</birth_place>
         </Player>
 </Players>
+```
