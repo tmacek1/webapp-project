@@ -1,16 +1,16 @@
 <?php
 
-// Display error if hepend
+// Display all errors
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
-// Authorization part of code
+// Check username for current session
 session_start();
 if (!isset($_SESSION["username"])) {
 	header('Location: login.php');
 }
 
-// Checking the time now when home page starts.
+// Store current time
 date_default_timezone_set('Europe/Zagreb');
 $now = time();
 

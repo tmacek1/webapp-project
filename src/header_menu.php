@@ -1,5 +1,9 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
-
+<!--page navigation menu-->
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -19,7 +23,7 @@
         <?php
           if ($_SESSION['role'] == 'admin') {
             echo '<li><a href="admin_panel.php">Admin panel</a></li>';
-	  }
+	        }
         ?>
       </ul>
       <ul class="nav navbar-nav navbar-right">
