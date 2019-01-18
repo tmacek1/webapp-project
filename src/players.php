@@ -13,16 +13,18 @@ $rows = $db->query($sql);
 <!DOCTYPE html>
 <html>
    <body>
-      <div class="conatiner">
-         <div class="row">
-            <div class="col-md-5"></div>
-            <h1 class="text-success">Player database</h1>
-         </div>
-         <div class="col-12 col-sm-6 col-md-6">
-          <div data-toggle="modal" data-target="#myModal">
-            <label class="btn btn-primary">Add new user</label>
-          </div>
-         </div>
+     <div class="container col-md-12">
+        <div class="row">
+           <div class="col-md-5"></div>
+           <h1 class="text-success">Player database</h1>
+        </div>
+        <div class="col-sm-6 col-md-6">
+           <label data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add new user</label>
+          <input type="text" class="search-box" autocomplete="off" placeholder="Search players..." />
+    </div>
+
+
+        </div>
          <!-- Modal -->
          <div id="myModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -68,7 +70,7 @@ $rows = $db->query($sql);
             <th>Registration time</th>
           </tr>
          </thead>
-         <tbody>
+         <tbody class="umoma">
             <tr>
             <?php while($row = $rows->fetch_assoc()): ?>
                <th><?php echo $row['id'] ?></th>
@@ -158,7 +160,41 @@ if ((strtolower($_SERVER['REQUEST_METHOD'])=='post') && (!empty($_FILES['chooseF
  &copy;2018
   <script>
     new Date().getFullYear()>2018&&document.write("- " + new Date().getFullYear());
+
   </script>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+  <script type="text/javascript">
+$(document).ready(function(){
+    $('input[type="text"]').on("keyup input", function(){
+        /* Get input value on change */
+        var inputVal = $(this).val();
+        var resultDropdown = $(".umoma");
+        if(inputVal.length > 0){
+            $.get("players-search.php", {term: inputVal}).done(function(data){
+                // Display the returned data in browser
+                resultDropdown.html(data);
+            });
+        } else if (inputVal.length == 0){
+            $.get("players-searchAll.php", {term: inputVal}).done(function(data){
+              // Display the returned data in browser
+              resultDropdown.html(data);
+          });
+        }
+        else{
+            resultDropdown.empty();
+        }
+    });
+
+    // Set search input value on click of result item
+    $(document).on("click", ".umoma p", function(){
+        $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
+        $(this).parent(".umoma").empty();
+    });
+});
+</script>
+
+
  VVG/Tomislav Macek
  </div>
 </div>
